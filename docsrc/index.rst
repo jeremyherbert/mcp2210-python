@@ -6,6 +6,9 @@
 Welcome to mcp2210-python's documentation!
 ==========================================
 
+.. automodule:: mcp2210
+   :members:
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

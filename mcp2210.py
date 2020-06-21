@@ -373,6 +373,7 @@ class Mcp2210(object):
 
     .. code-block:: python
 
+        import time
         from mcp2210 import Mcp2210, Mcp2210GpioDesignation, Mcp2210GpioDirection
 
         # To use this example code:
