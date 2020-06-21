@@ -244,9 +244,6 @@ events due to the way the device works (typically about 30-40us).</p>
 <li><p><strong>delay_between_bytes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Delay between bytes</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
 </dl>
 </dd></dl>
 
@@ -274,11 +271,6 @@ events due to the way the device works (typically about 30-40us).</p>
 was set to <cite>True</cite> when this class was constructed, there is no need to call this function. Otherwise,
 it needs to be called manually each time any GPIO configuration is changed, or when the GPIO inputs are to be
 read.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -291,9 +283,6 @@ read.</p>
 <li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
 <li><p><strong>designation</strong> (<a class="reference internal" href="#mcp2210.Mcp2210GpioDesignation" title="mcp2210.Mcp2210GpioDesignation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDesignation</span></code></a>) – The designation to set</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
@@ -309,9 +298,6 @@ read.</p>
 <li><p><strong>direction</strong> (<a class="reference internal" href="#mcp2210.Mcp2210GpioDirection" title="mcp2210.Mcp2210GpioDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDirection</span></code></a>) – The direction to set</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
 </dl>
 </dd></dl>
 
@@ -325,9 +311,6 @@ read.</p>
 <li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
 <li><p><strong>value</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – The value to write to the pin</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
@@ -392,13 +375,10 @@ as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_
 <dl class="py method">
 <dt id="mcp2210.Mcp2210GpioConfiguration.check_pin_number_is_gpio">
 <code class="sig-name descname">check_pin_number_is_gpio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.check_pin_number_is_gpio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if the given pin number is configured as a GPIO.</p>
+<dd><p>Checks if the given pin number is configured as a GPIO. Raises an exception if it is not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
@@ -411,8 +391,11 @@ as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mcp2210.Mcp2210GpioDirection" title="mcp2210.Mcp2210GpioDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDirection</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The GPIO direction</p>
 </dd>
 </dl>
 </dd></dl>
@@ -459,9 +442,6 @@ as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_
 <li><p><strong>direction</strong> (<a class="reference internal" href="#mcp2210.Mcp2210GpioDirection" title="mcp2210.Mcp2210GpioDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDirection</span></code></a>) – The direction to set</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
 </dl>
 </dd></dl>
 
@@ -476,9 +456,6 @@ as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_
 <li><p><strong>value</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – The value to set</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
 </dl>
 </dd></dl>
 
@@ -489,9 +466,6 @@ as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – the packed binary data</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -553,9 +527,6 @@ as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_
 <dl class="field-list simple">
 <dt class="field-odd">Data</dt>
 <dd class="field-odd"><p>the packed binary data</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
