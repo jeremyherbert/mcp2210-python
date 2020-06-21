@@ -16,7 +16,7 @@ logger = logging.getLogger()
 
 def bytes_to_hex_string(data: bytes) -> str:
     """
-    Converts a bytes object into a string of hex characters. For example, b"\x00\x01" becomes "00 01".
+    Converts a bytes object into a string of hex characters. For example, b"\\\\x00\\\\x01" becomes "00 01".
 
     :param data: bytes object
     :return: a hex string of the bytes
@@ -417,7 +417,7 @@ class Mcp2210(object):
         for i in range(0, 5):
             mcp.set_gpio_output_value(i, False)
 
-        # set pin 4 as CS and do an SPI transaction of the bytes 0 through to 255 inclusive
+        # set pin 4 as CS, and transmit the bytes 0 through to 255 inclusive over SPI
         mcp.set_gpio_designation(4, Mcp2210GpioDesignation.CHIP_SELECT)
         tx_data = bytes(range(256))
         rx_data = mcp.spi_exchange(tx_data, cs_pin_number=4)

@@ -8,6 +8,8 @@ Welcome to mcp2210-python's documentation!
 
 .. automodule:: mcp2210
    :members:
+   :undoc-members:
+   :exclude-members: Mcp2210GpioConfiguration, Mcp2210TransferConfiguration
 
 .. toctree::
    :maxdepth: 2
