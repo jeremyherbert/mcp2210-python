@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MCP2210 python driver documentation &mdash; mcp2210 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> mcp2210
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">MCP2210 python driver documentation</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">mcp2210</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>MCP2210 python driver documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-mcp2210">
+<span id="mcp2210-python-driver-documentation"></span><h1>MCP2210 python driver documentation<a class="headerlink" href="#module-mcp2210" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="mcp2210.Mcp2210">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serial_number</span></em>, <em class="sig-param"><span class="n">vendor_id</span><span class="o">=</span><span class="default_value">1240</span></em>, <em class="sig-param"><span class="n">product_id</span><span class="o">=</span><span class="default_value">222</span></em>, <em class="sig-param"><span class="n">immediate_gpio_update</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is used to interface with the MCP2210.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>serial_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The serial number of the device to connect to (a 10 digit string)</p></li>
+<li><p><strong>vendor_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The vendor ID of the device (defaults to 0x04d8)</p></li>
+<li><p><strong>product_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The product ID of the device (defaults to 0x00de)</p></li>
+<li><p><strong>immediate_gpio_update</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If <cite>True</cite>, immediately send any GPIO configuration changes to the device</p></li>
+</ul>
+</dd>
+</dl>
+<p>A usage example is below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mcp2210</span> <span class="kn">import</span> <span class="n">Mcp2210</span><span class="p">,</span> <span class="n">Mcp2210GpioDesignation</span><span class="p">,</span> <span class="n">Mcp2210GpioDirection</span>
+
+<span class="c1"># To use this example code:</span>
+<span class="c1">#   connect LEDs to pins 0-4</span>
+<span class="c1">#   connect MISO to MOSI on the MCP2210 breakout board.</span>
+
+<span class="c1"># You can also connect either VCC or GND to pins 5-8.</span>
+<span class="c1"># Note that when unconnected the pins will read as False.</span>
+
+<span class="c1"># connect to the device by serial number</span>
+<span class="n">mcp</span> <span class="o">=</span> <span class="n">Mcp2210</span><span class="p">(</span><span class="n">serial_number</span><span class="o">=</span><span class="s2">&quot;0000992816&quot;</span><span class="p">)</span>
+
+<span class="c1"># this only needs to happen once</span>
+<span class="c1"># if you don&#39;t call this, the device will use the existing settings</span>
+<span class="n">mcp</span><span class="o">.</span><span class="n">configure_spi_timing</span><span class="p">(</span><span class="n">chip_select_to_data_delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">last_data_byte_to_cs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">delay_between_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># set all pins as GPIO</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_designation</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Mcp2210GpioDesignation</span><span class="o">.</span><span class="n">GPIO</span><span class="p">)</span>
+
+<span class="c1"># set lower GPIOs to output</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_direction</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Mcp2210GpioDirection</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">)</span>
+
+<span class="c1"># set upper GPIOs to input</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_direction</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Mcp2210GpioDirection</span><span class="o">.</span><span class="n">INPUT</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pin </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">mcp</span><span class="o">.</span><span class="n">get_gpio_value</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="c1"># flash an LED</span>
+<span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_output_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_output_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_output_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># LED slider</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">counter</span> <span class="o">%=</span> <span class="mi">5</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_output_value</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">counter</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># turn all LEDs off</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_output_value</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># set pin 4 as CS and do an SPI transaction of the bytes 0 through to 255 inclusive</span>
+<span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_designation</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Mcp2210GpioDesignation</span><span class="o">.</span><span class="n">CHIP_SELECT</span><span class="p">)</span>
+<span class="n">tx_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span>
+<span class="n">rx_data</span> <span class="o">=</span> <span class="n">mcp</span><span class="o">.</span><span class="n">spi_exchange</span><span class="p">(</span><span class="n">tx_data</span><span class="p">,</span> <span class="n">cs_pin_number</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># as MOSI is connected to MISO, check that the data matches what we sent</span>
+<span class="k">assert</span> <span class="n">rx_data</span> <span class="o">==</span> <span class="n">tx_data</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.configure_spi_timing">
+<code class="sig-name descname">configure_spi_timing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chip_select_to_data_delay</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">last_data_byte_to_cs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">delay_between_bytes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.configure_spi_timing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the timing parameters for an SPI transaction. All delays are in 100 microsecond steps. If these
+delays are not needed, they can be set to 0. Note that there will still be some minimal delays between the
+events due to the way the device works (typically about 30-40us).</p>
+<p>If this function is never called, the delays will be whatever the device was configured with previously.</p>
+<p>If <cite>None</cite> is passed as a parameter, the value will remain unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chip_select_to_data_delay</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Delay between CS assert and first data byte</p></li>
+<li><p><strong>last_data_byte_to_cs</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Delay between the last data byte and CS de-assert</p></li>
+<li><p><strong>delay_between_bytes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Delay between bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.get_gpio_value">
+<code class="sig-name descname">get_gpio_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.get_gpio_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the value of a GPIO input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The state of the pin</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.gpio_update">
+<code class="sig-name descname">gpio_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.gpio_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates any GPIO direction/output levels and reads the latest GPIO input data. If the <cite>immediate_gpio_update</cite>
+was set to <cite>True</cite> when this class was constructed, there is no need to call this function. Otherwise,
+it needs to be called manually each time any GPIO configuration is changed, or when the GPIO inputs are to be
+read.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.set_gpio_designation">
+<code class="sig-name descname">set_gpio_designation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em>, <em class="sig-param"><span class="n">designation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.set_gpio_designation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Designates a pin as either GPIO, chip select or alternate function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
+<li><p><strong>designation</strong> (<a class="reference internal" href="#mcp2210.Mcp2210GpioDesignation" title="mcp2210.Mcp2210GpioDesignation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDesignation</span></code></a>) – The designation to set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.set_gpio_direction">
+<code class="sig-name descname">set_gpio_direction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em>, <em class="sig-param"><span class="n">direction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.set_gpio_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configures a GPIO as either input or output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
+<li><p><strong>direction</strong> (<a class="reference internal" href="#mcp2210.Mcp2210GpioDirection" title="mcp2210.Mcp2210GpioDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDirection</span></code></a>) – The direction to set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.set_gpio_output_value">
+<code class="sig-name descname">set_gpio_output_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.set_gpio_output_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of a GPIO output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
+<li><p><strong>value</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – The value to write to the pin</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210.spi_exchange">
+<code class="sig-name descname">spi_exchange</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">payload</span></em>, <em class="sig-param"><span class="n">cs_pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.spi_exchange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs an SPI exchange. Note that the pin corresponding to the number provided must already be designated
+as a CS pin using <a class="reference internal" href="#mcp2210.Mcp2210.set_gpio_designation" title="mcp2210.Mcp2210.set_gpio_designation"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_gpio_designation()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>payload</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The bytes to send in the transaction</p></li>
+<li><p><strong>cs_pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The pin number which is to be used as CS.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The bytes which were received as part of the exchange</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210AccessControl">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210AccessControl</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210AccessControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>MCP2210 password state. Currently unused and only present for compatibility.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="mcp2210.Mcp2210CommandFailedException">
+<em class="property">exception </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210CommandFailedException</code><a class="headerlink" href="#mcp2210.Mcp2210CommandFailedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that the device either reported a command failure, or returned some unexpected data.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="mcp2210.Mcp2210CommandResponseDesyncException">
+<em class="property">exception </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210CommandResponseDesyncException</code><a class="headerlink" href="#mcp2210.Mcp2210CommandResponseDesyncException" title="Permalink to this definition">¶</a></dt>
+<dd><p>The MCP2210 returned a command response that didn’t correspond to a request.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210CommandResult">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210CommandResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210CommandResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Results codes for the MCP2210.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210Commands">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210Commands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210Commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command codes for the MCP2210</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210GpioConfiguration">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210GpioConfiguration</code><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds and validates the GPIO configuration parameters.</p>
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.check_pin_number_is_gpio">
+<code class="sig-name descname">check_pin_number_is_gpio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.check_pin_number_is_gpio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the given pin number is configured as a GPIO.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.get_gpio_direction_for_pin_number">
+<code class="sig-name descname">get_gpio_direction_for_pin_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.get_gpio_direction_for_pin_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the direction for a given GPIO.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.get_gpio_input_value_for_pin_number">
+<code class="sig-name descname">get_gpio_input_value_for_pin_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.get_gpio_input_value_for_pin_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current state the given GPIO.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The pin state</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.pack">
+<code class="sig-name descname">pack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.pack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Packs the configuration into the binary format understood by the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the packed binary data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.set_gpio_direction_for_pin_number">
+<code class="sig-name descname">set_gpio_direction_for_pin_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em>, <em class="sig-param"><span class="n">direction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.set_gpio_direction_for_pin_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the direction for a given GPIO.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
+<li><p><strong>direction</strong> (<a class="reference internal" href="#mcp2210.Mcp2210GpioDirection" title="mcp2210.Mcp2210GpioDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mcp2210GpioDirection</span></code></a>) – The direction to set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.set_gpio_output_value_for_pin_number">
+<code class="sig-name descname">set_gpio_output_value_for_pin_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_number</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.set_gpio_output_value_for_pin_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a GPIO output value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_number</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of the pin of interest</p></li>
+<li><p><strong>value</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – The value to set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210GpioConfiguration.unpack_from">
+<code class="sig-name descname">unpack_from</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioConfiguration.unpack_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpacks the configuration from the binary format generated by the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – the packed binary data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210GpioDesignation">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210GpioDesignation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioDesignation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The designations which can be applied to a pin.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210GpioDirection">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210GpioDirection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210GpioDirection" title="Permalink to this definition">¶</a></dt>
+<dd><p>GPIO direction codes.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210InterruptCountingMode">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210InterruptCountingMode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210InterruptCountingMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>MCP2210 interrupt counting modes. Currently unused and only present for compatibility.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="mcp2210.Mcp2210SpiBusLockedException">
+<em class="property">exception </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210SpiBusLockedException</code><a class="headerlink" href="#mcp2210.Mcp2210SpiBusLockedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>An external master is locking the SPI bus.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210SpiTransferStatus">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210SpiTransferStatus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210SpiTransferStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Codes which indicate the current state of an SPI transfer.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mcp2210.Mcp2210TransferConfiguration">
+<em class="property">class </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210TransferConfiguration</code><a class="headerlink" href="#mcp2210.Mcp2210TransferConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds and validates the SPI transaction parameters.</p>
+<dl class="py method">
+<dt id="mcp2210.Mcp2210TransferConfiguration.pack">
+<code class="sig-name descname">pack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210TransferConfiguration.pack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Packs the configuration into the binary format understood by the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the packed binary data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mcp2210.Mcp2210TransferConfiguration.unpack_from">
+<code class="sig-name descname">unpack_from</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210TransferConfiguration.unpack_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpacks the configuration from the binary format generated by the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Data</dt>
+<dd class="field-odd"><p>the packed binary data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="mcp2210.Mcp2210UsbBusyException">
+<em class="property">exception </em><code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">Mcp2210UsbBusyException</code><a class="headerlink" href="#mcp2210.Mcp2210UsbBusyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>A USB transaction is in progress, so the MCP2210 cannot execute the command.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="mcp2210.bytes_to_hex_string">
+<code class="sig-prename descclassname">mcp2210.</code><code class="sig-name descname">bytes_to_hex_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.bytes_to_hex_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a bytes object into a string of hex characters. For example, b”” becomes “00 01”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – bytes object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a hex string of the bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Jeremy Herbert
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
