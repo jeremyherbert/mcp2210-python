@@ -191,7 +191,7 @@
 
 <span class="c1"># set lower GPIOs to output</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
-    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_direction</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Mcp2210GpioDirection</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">)</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">set_gpio_direction</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Mcp2210GpioDirection</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">)</span>
 
 <span class="c1"># set upper GPIOs to input</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>

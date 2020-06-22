@@ -389,7 +389,7 @@ class Mcp2210(object):
 
         # set lower GPIOs to output
         for i in range(0, 5):
-            mcp.set_gpio_direction(0, Mcp2210GpioDirection.OUTPUT)
+            mcp.set_gpio_direction(i, Mcp2210GpioDirection.OUTPUT)
 
         # set upper GPIOs to input
         for i in range(5, 9):
