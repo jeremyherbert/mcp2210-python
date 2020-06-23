@@ -747,3 +747,13 @@ class Mcp2210(object):
             self._spi_settings.delay_between_bytes = delay_between_bytes
 
         self._set_spi_configuration()
+
+    def set_spi_mode(self, mode: int):
+        """
+        Sets the SPI mode of the device
+
+        :param mode: the SPI mode (0, 1, 2 or 3)
+        """
+
+        self._spi_settings.mode = mode
+        self._set_spi_configuration()

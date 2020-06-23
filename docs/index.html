@@ -316,6 +316,17 @@ read.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="mcp2210.Mcp2210.set_spi_mode">
+<code class="sig-name descname">set_spi_mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.set_spi_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the SPI mode of the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the SPI mode (0, 1, 2 or 3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="mcp2210.Mcp2210.spi_exchange">
 <code class="sig-name descname">spi_exchange</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">payload</span></em>, <em class="sig-param"><span class="n">cs_pin_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mcp2210.Mcp2210.spi_exchange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs an SPI exchange. Note that the pin corresponding to the number provided must already be designated
