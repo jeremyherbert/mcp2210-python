@@ -1,2 +1,0 @@
-from mcp2210 import Mcp2210, Mcp2210GpioDesignation, Mcp2210GpioDirection, Mcp2210CommandFailedException, \
-    Mcp2210SpiBusLockedException, Mcp2210CommandResponseDesyncException, Mcp2210UsbBusyException

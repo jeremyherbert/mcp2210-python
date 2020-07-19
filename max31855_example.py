@@ -2,7 +2,7 @@
 
 import time
 
-from mcp2210 import Mcp2210,  Mcp2210GpioDesignation
+from mcp2210 import Mcp2210, Mcp2210GpioDesignation
 
 mcp = Mcp2210(serial_number="0000992816")
 mcp.configure_spi_timing(chip_select_to_data_delay=0,
@@ -27,7 +27,7 @@ while 1:
     internal_temp_raw = (response_merged >> 4) & 0xFFF
 
     if internal_temp_raw & (1 << 11):
-        internal_temp = ((internal_temp_raw) ^ 0x7FF) * -0.0625
+        internal_temp = (internal_temp_raw ^ 0x7FF) * -0.0625
     else:
         internal_temp = internal_temp_raw * 0.0625
 

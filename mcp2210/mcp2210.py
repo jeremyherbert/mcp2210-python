@@ -8,7 +8,7 @@ from typing import List
 import hid
 
 from enum import IntEnum
-from validated_dataclass import ValidatedDataClass, check_in_closed_interval
+from .validated_dataclass import ValidatedDataClass, check_in_closed_interval
 
 # logger object for logging errors/debug information
 logger = logging.getLogger()
