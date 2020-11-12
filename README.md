@@ -1,10 +1,7 @@
 # mcp2210-python
 An MCP2210 python driver.
 
-Make sure to install the dependencies using:
+You can install this package using `pip install mcp2210-python`.
 
-```
-pip install -r requirements.txt
-```
 
 Documentation can be found here: [https://jeremyherbert.github.io/mcp2210-python](https://jeremyherbert.github.io/mcp2210-python)

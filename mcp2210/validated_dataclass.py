@@ -1,6 +1,5 @@
-from dataclasses import dataclass
-
 from typing import Union
+
 
 class ValidatedDataClass(object):
     def _validate(self):

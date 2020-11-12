@@ -2,6 +2,7 @@ import struct
 import logging
 import time
 import math
+import platform
 
 from typing import List
 
@@ -116,7 +117,7 @@ class Mcp2210TransferConfiguration(ValidatedDataClass):
         check_in_closed_interval(self.bit_rate, 1.5e3, 12e6,
                                  "Clock rate must be between 1.5kHz and 12MHz")
 
-        check_in_closed_interval(self.idle_chip_select_value, 0x0, 0x01FF,
+        check_in_closed_interval(self.idle_chip_select_value, 0x0, 0xFFFF,
                                  "Idle chip select mask out of range")
 
         check_in_closed_interval(self.active_chip_select_value, 0x0, 0xFFFF,
@@ -237,13 +238,13 @@ class Mcp2210GpioConfiguration(ValidatedDataClass):
             if self.gpio_designations[i] not in Mcp2210GpioDesignation.__members__.values():
                 raise ValueError("GPIO designation {} is invalid".format(i))
 
-        check_in_closed_interval(self.gpio_output_level, 0x0, 0x01FF,
+        check_in_closed_interval(self.gpio_output_level, 0x0, 0xFFFF,
                                  "GPIO output level is invalid")
 
         check_in_closed_interval(self.gpio_input_level, 0x0, 0xFFFF,
                                  "GPIO input level is invalid")
 
-        check_in_closed_interval(self.gpio_direction, 0x0, 0x01FF,
+        check_in_closed_interval(self.gpio_direction, 0x0, 0xFFFF,
                                  "GPIO direction configuration is invalid")
 
         if self.interrupt_counting_mode not in Mcp2210InterruptCountingMode.__members__.values():
@@ -478,7 +479,11 @@ class Mcp2210(object):
             request = payload
 
         logger.debug("MCP2210: HID write: " + bytes_to_hex_string(request))
-        self._hid.write(bytes(payload))
+        if platform.system() == "Windows":
+            # work around windows weirdness requiring prepended report ID for report 0
+            self._hid.write(b"\x00" + bytes(request))
+        else:
+            self._hid.write(bytes(request))
 
     def _hid_read(self, size: int) -> bytes:
         """
