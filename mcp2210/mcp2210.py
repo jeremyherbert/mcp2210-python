@@ -455,8 +455,8 @@ class Mcp2210(object):
         self._get_gpio_configuration()
 
         # need to set CS pin state for this to work
-        self._spi_settings.idle_chip_select_value = 0xFF
-        self._spi_settings.active_chip_select_value = 0x00
+        self._spi_settings.idle_chip_select_value = 0x01FF
+        self._spi_settings.active_chip_select_value = 0x0000
         self._set_spi_configuration()
 
     def __repr__(self):
@@ -515,7 +515,7 @@ class Mcp2210(object):
         if check_return_code:
             if response[1] == Mcp2210CommandResult.SUCCESS:
                 pass
-            elif response[1] == Mcp2210CommandResult.USB_TRANSFER_IN_PROGRESS:
+            elif response[1] == Mcp2210CommandResult.TRANSFER_IN_PROGRESS:
                 raise Mcp2210UsbBusyException
             else:
                 raise Mcp2210CommandFailedException
@@ -675,11 +675,10 @@ class Mcp2210(object):
         if self._gpio_settings.gpio_designations[cs_pin_number] != Mcp2210GpioDesignation.CHIP_SELECT:
             raise ValueError("Pin is not designated as a chip select pin")
 
-        # self._spi_settings.idle_chip_select_value = 0xFF ^ (1 << cs_pin_number)
-        # self._spi_settings.active_chip_select_value = 0x00 ^ (1 << cs_pin_number)
+        self._spi_settings.active_chip_select_value = 0x01FF ^ (1 << cs_pin_number)
         self._spi_settings.transfer_size = len(payload)
         self._set_spi_configuration()
-
+        
         chunked_payload = []
         for i in range(math.ceil(len(payload) / 60)):
             start_index = i * 60
