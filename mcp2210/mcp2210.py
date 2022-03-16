@@ -515,7 +515,7 @@ class Mcp2210(object):
         if check_return_code:
             if response[1] == Mcp2210CommandResult.SUCCESS:
                 pass
-            elif response[1] == Mcp2210CommandResult.USB_TRANSFER_IN_PROGRESS:
+            elif response[1] == Mcp2210CommandResult.TRANSFER_IN_PROGRESS:
                 raise Mcp2210UsbBusyException
             else:
                 raise Mcp2210CommandFailedException
