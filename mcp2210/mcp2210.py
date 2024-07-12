@@ -24,14 +24,14 @@ def bytes_to_hex_string(data: bytes) -> str:
     """
     return ' '.join("{:02X}".format(x) for x in data)
 
-def find_connected_mcp2210() -> list[str]:
+def find_connected_mcp2210() -> List[str]:
     """
     Searches for connected MCP2210 devices and returns their serial numbers.
 
     Returns:
-        list[str]: A list of serial numsbers of available MCP2210 devices.
+        List[str]: A list of serial numsbers of available MCP2210 devices.
     """
-    connected_mcps: list[str] = []
+    connected_mcps: List[str] = []
 
     try:
         for hid_handler in hid.enumerate(vendor_id = 0x04d8, product_id = 0x00de):
