@@ -12,7 +12,7 @@ from enum import IntEnum
 from .validated_dataclass import ValidatedDataClass, check_in_closed_interval
 
 # logger object for logging errors/debug information
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 def bytes_to_hex_string(data: bytes) -> str:
