@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mcp2210-python",
-    version="1.0.6",
+    version="1.0.7",
     author="Jeremy Herbert",
     author_email="jeremy.006@gmail.com",
     description="A python driver for the MCP2210 USB-to-SPI converter",
@@ -19,5 +19,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=['hidapi'],
-    python_requires='>=3.6',
+    python_requires='>=3.8',
 )
