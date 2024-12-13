@@ -6,7 +6,7 @@
 Welcome to mcp2210-python's documentation!
 ==========================================
 
-.. automodule:: mcp2210
+.. automodule:: mcp2210.mcp2210
    :members:
    :undoc-members:
    :exclude-members: Mcp2210GpioConfiguration, Mcp2210TransferConfiguration

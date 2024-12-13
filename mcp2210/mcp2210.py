@@ -384,7 +384,7 @@ class Mcp2210(object):
     :param vendor_id: The vendor ID of the device (defaults to 0x04d8)
     :param product_id: The product ID of the device (defaults to 0x00de)
     :param immediate_gpio_update: If `True`, immediately send any GPIO configuration changes to the device
-    :param reset_transactions_on_init: If 'True', performs a reset of the HID transaction statemachine on init
+    :param reset_transactions_on_init: If `True`, performs a reset of the HID transaction statemachine on init
                                     (defaults to False to maintain backwards compatibility)
 
     A usage example is below.
