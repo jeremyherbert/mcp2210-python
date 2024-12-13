@@ -96,6 +96,13 @@ class Mcp2210CommandResponseDesyncException(Exception):
     pass
 
 
+class Mcp2210CommandResponseTimeoutException(Exception):
+    """
+    Timed out waiting for a response from the MCP2210
+    """
+    pass
+
+
 class Mcp2210UsbBusyException(Exception):
     """
     A USB transaction is in progress, so the MCP2210 cannot execute the command.
@@ -377,6 +384,8 @@ class Mcp2210(object):
     :param vendor_id: The vendor ID of the device (defaults to 0x04d8)
     :param product_id: The product ID of the device (defaults to 0x00de)
     :param immediate_gpio_update: If `True`, immediately send any GPIO configuration changes to the device
+    :param reset_transactions_on_init: If 'True', performs a reset of the HID transaction statemachine on init
+                                    (defaults to False to maintain backwards compatibility)
 
     A usage example is below.
 
@@ -391,6 +400,11 @@ class Mcp2210(object):
 
         # You can also connect either VCC or GND to pins 5-8.
         # Note that when unconnected the pins will read as False.
+
+        # In some circumstances, closing at the wrong time (through an exception, etc) can cause the
+        # MCP2210 to get stuck mid-transaction. If this happens, the hidapi library will block forever. To resolve this,
+        # pass reset_transactions_on_init=True to the constructor - this will attempt to reset the transaction
+        # statemachine by performing a dummy read before doing anything meaningful.
 
         # connect to the device by serial number
         mcp = Mcp2210(serial_number="0000992816")
@@ -445,7 +459,7 @@ class Mcp2210(object):
     """
 
     def __init__(self, serial_number: str, vendor_id: int = 0x04d8, product_id: int = 0x00de,
-                 immediate_gpio_update: bool = True):
+                 immediate_gpio_update: bool = True, reset_transactions_on_init: bool = False):
         if not serial_number.isdigit():
             raise ValueError("Serial number must be numbers only")
         if len(serial_number) != 10:
@@ -468,6 +482,8 @@ class Mcp2210(object):
         self._gpio_direction_needs_update = False
         self._gpio_output_needs_update = False
 
+        if reset_transactions_on_init:
+            self._transaction_flow_reset()
         self._get_spi_configuration()
         self._get_gpio_configuration()
 
@@ -502,19 +518,37 @@ class Mcp2210(object):
         else:
             self._hid.write(bytes(request))
 
-    def _hid_read(self, size: int) -> bytes:
+    def _hid_read(self, size: int, timeout_sec: float = 0) -> bytes:
         """
         Internal function to perform a HID read from the device.
 
         :param size: Number of bytes to read
+        :param timeout_sec: How long to wait before timing out (zero means no timeout)
         :return: the bytes which were read
         """
-        read_data = bytes(self._hid.read(size))
+        if timeout_sec <= 0:
+            read_data = bytes(self._hid.read(size))
+        else:
+            self._hid.set_nonblocking(True)
+
+            read_data = b""
+            start = time.monotonic()
+            while start + timeout_sec >= time.monotonic():
+                tmp = self._hid.read(size - len(read_data))
+                if tmp:
+                    read_data += bytes(tmp)
+                else:
+                    time.sleep(0.05)
+
+                if len(read_data) == size:
+                    break
+
+            self._hid.set_nonblocking(False)
 
         logger.debug("MCP2210: HID read: " + bytes_to_hex_string(read_data))
         return read_data
 
-    def _execute_command(self, request: bytes, pad_with_zeros: bool = True, check_return_code: bool = True) -> bytes:
+    def _execute_command(self, request: bytes, pad_with_zeros: bool = True, check_return_code: bool = True, timeout_sec: float = 0) -> bytes:
         """
         Internal function to execute a command on the MCP2210.
 
@@ -525,7 +559,11 @@ class Mcp2210(object):
         """
         self._hid_write(request, pad_with_zeros=pad_with_zeros)
 
-        response = self._hid.read(64)
+        response = self._hid_read(64, timeout_sec)
+
+        if not response or len(response) != 64:
+            raise Mcp2210CommandResponseTimeoutException
+
         if response[0] != request[0]:
             raise Mcp2210CommandResponseDesyncException
 
@@ -538,6 +576,18 @@ class Mcp2210(object):
                 raise Mcp2210CommandFailedException
 
         return response
+
+    def _transaction_flow_reset(self):
+        """
+        Internal function for (hopefully) resetting the statemachine of the MCP2210. May be needed in case of a weird
+        glitch state where a transaction failed but the device has not yet been reinitialised.
+
+        This reads the status with a short timeout and ignores the result.
+        """
+        try:
+            self._execute_command(bytes([Mcp2210Commands.GET_STATUS]), timeout_sec=1)
+        except Mcp2210CommandResponseTimeoutException:
+            pass
 
     def _get_spi_configuration(self):
         """
@@ -778,3 +828,4 @@ class Mcp2210(object):
 
         self._spi_settings.mode = mode
         self._set_spi_configuration()
+        
